@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int f(int n,int k){
+        if(n%k==0){
+            return n/k;
+        }
+        return n/k+1;
+    }
+    long long maxKelements(vector<int>& nums, int k) {
+        priority_queue<int>pq;
+        long long int ans=0;
+        for(int i:nums){
+            pq.push(i);
+        }
+        while(k>0){
+            ans+=pq.top();
+            pq.push(f(pq.top(),3));
+            pq.pop();
+            k--;
+        }
+        return ans;
+    }
+};
