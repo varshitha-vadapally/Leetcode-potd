@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int maximumSwap(int num) {
+        vector<int>v;
+        int b=10;
+        while(num>0){
+            v.push_back(num%b);
+            num=num/b;
+            
+        }
+
+        int m=0,s=0,t=0;
+        for(int k=0;k<v.size();k++){
+            if(v[k]>v[m]){
+                m=k;
+            }
+            else if(v[k]<v[m]){
+                t=k;
+                s=m;
+            }
+        }
+        swap(v[s],v[t]);
+        b=1;
+        int ans=0;
+        for(int x:v){
+            
+            ans+=x*b;
+            b*=10;
+        }
+        return ans;
+    }
+};
